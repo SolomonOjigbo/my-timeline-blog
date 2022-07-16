@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useEffect } from 'react'
 import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
+import { getPosts } from './actions/posts';
 import { makeStyles } from '@mui/styles';
 import Posts from './components/Timeline/Posts';
 import Form from './components/Form/Form';
 import timelineimage from './images/timelineimage.png';
+import { useDispatch } from 'react-redux';
 
 
-// const theme = createTheme();
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const Main = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+   useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
   return (
     <Container maxWidth="lg">

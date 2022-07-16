@@ -1,6 +1,7 @@
 import React from 'react'
 import Post from './Post/Post'
 import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,8 +18,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Posts = () => {
-
+  const posts = useSelector((state) => state.posts);
   const classes = useStyles();
+
+  console.log(posts)
   return (
         <>
         <h1>Posts</h1>
