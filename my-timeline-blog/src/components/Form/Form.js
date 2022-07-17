@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@mui/material';
 import FileBase from 'react-file-base64';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@mui/styles';
+import { createPost } from '../../actions/posts';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,17 +32,24 @@ const Form = () => {
   const [postData, setPostData ] = useState({
     author: '', title: '', message: '', tags: '', selectedFile: '',
   })
+  
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  const handleSubmit = () => {
 
-  }
 
-  const clear = () => {
-    
+
+    const clear = () => {
+    setPostData({ author: '', title: '', message: '', tags: '', selectedFile: '' });
   };
 
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      dispatch(createPost(postData));
+      clear();
+  }
 
+ 
   return (
     <Paper className={classes.paper}>
       <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
