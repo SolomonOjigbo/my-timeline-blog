@@ -1,5 +1,5 @@
 import React, {useEffect } from 'react'
-import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
+import { Container, AppBar, Typography, Grow, Grid, Box } from '@mui/material';
 import { getPosts } from './actions/posts';
 import { makeStyles } from '@mui/styles';
 import Posts from './components/Timeline/Posts';
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgba(0,183,255, 1)'
   },
   image: {
-    marginLeft: '5px'
+    marginLeft: '15px'
   }
 }));
 
@@ -39,10 +39,16 @@ export const Main = () => {
   }, [dispatch]);
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <AppBar className={classes.appBar} position="static" color="inherit" >
-        <Typography className={classes.heading} variant="h3" align="center" >My Timeline</Typography>
+        <Box display="flex" flexDirection="row" className={classes.root}>
+        <Box flexGrow={0}>
+        <Typography className={classes.heading} variant="h4" align="center" >My Timeline</Typography>
+        </Box>
+        <Box flexGrow={0}>
         <img className={classes.image} src={timelineimage} alt='icon' height="60" />
+        </Box>
+        </Box>
       </AppBar>
       <Grow in>
         <Container>
@@ -50,7 +56,7 @@ export const Main = () => {
               <Grid item xs={12} sm={7}>
                  <Posts  />
               </Grid>
-              <Grid item xs={12} sm={7}>
+              <Grid item xs={12} sm={4}>
                 <Form  />
               </Grid>
           </Grid>
