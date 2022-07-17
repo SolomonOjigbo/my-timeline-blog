@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './reducers/configureStore';
 import App from './App';
+import './index.css';
 
 
 
