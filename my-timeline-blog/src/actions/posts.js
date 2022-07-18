@@ -1,5 +1,5 @@
 import * as api from '../api';
-import { FETCH_ALL, CREATE } from '../actions/types';
+import { FETCH_ALL, CREATE, UPDATE } from '../actions/types';
 
 
 export const getPosts = () => async(dispatch) => {
@@ -22,3 +22,13 @@ export const createPost = (post) => async (dispatch) => {
         console.log(error.message)
     }
 }
+
+export const updatePost = (id, post) => async (dispatch) => {
+  try {
+    const { data } = await api.updatePost(id, post);
+
+    dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE } from '../actions/types';
+import { FETCH_ALL, CREATE, UPDATE } from '../actions/types';
 
 export default (posts = [], action ) => {
     switch (action.type) {
@@ -7,6 +7,9 @@ export default (posts = [], action ) => {
 
         case CREATE:
             return [...posts, action.payload];
+        
+        case UPDATE:
+           return posts.map(post => post._id === action.payload._id ? action.payload : post);
     
         default:
             return posts;
